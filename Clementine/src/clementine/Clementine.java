@@ -5,17 +5,21 @@
  */
 package clementine;
 
+import java.io.IOException;
+
 /**
  *
  * @author JamesFox
  */
 public class Clementine {
-
+    
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         
+        BotController clementine = new BotController();
+        clementine.runClem();
     }
     
 }
