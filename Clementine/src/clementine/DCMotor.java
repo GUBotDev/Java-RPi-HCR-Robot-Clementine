@@ -167,7 +167,7 @@ public class DCMotor{
      
     public void setSpeedLeft(int speed){
         
-        Gpio.pwmWrite(1, speed);
+        Gpio.pwmWrite(23, speed);
         
     }
     
