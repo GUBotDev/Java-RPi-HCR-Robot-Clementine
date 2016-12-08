@@ -110,7 +110,6 @@ public class ClemClient extends JFrame implements KeyListener {
         
         try{
             connectToServer();
-            System.out.println("connected");
             getStreams(); // Get Input and output sreams
             processConnection();
         }catch(EOFException eof){
@@ -154,7 +153,7 @@ public class ClemClient extends JFrame implements KeyListener {
     
     private void sendData(String message){
         try {
-            output.writeObject("CLIENT>>> "+message);
+            output.writeObject(""+message);
             output.flush();
         } catch (IOException ex) {
             //Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);

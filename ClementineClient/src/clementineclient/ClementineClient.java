@@ -19,7 +19,7 @@ public class ClementineClient {
     public static void main(String[] args) {
         ClemClient application;
         
-        application = new ClemClient("192.168.0.101");// IP of the rPi
+        application = new ClemClient("192.168.0.200");// IP of the rPi
         application.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         application.runClient();
     }
