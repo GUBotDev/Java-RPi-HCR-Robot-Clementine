@@ -18,8 +18,9 @@ public class Clementine {
      */
     public static void main(String[] args) throws IOException, InterruptedException {
         
-        BotController clementine = new BotController();
-        clementine.runClem();
+        Server clementineServer = new Server();
+        clementineServer.runServer();
+        
     }
     
 }
