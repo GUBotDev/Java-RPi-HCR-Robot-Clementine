@@ -23,7 +23,7 @@ public class DCMotor{
 //        application.runServer();
          
         //create gpio controller
-         GpioController gpio = GpioFactory.getInstance();
+         GpioController gpio;
         
 //          final GpioPinAnalogOutput enablePin = gpio.provisionAnalogOutputPin(RaspiPin.GPIO_01, 40);
 //        final GpioPinDigitalOutput enablePin = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_04, PinState.HIGH);
@@ -31,11 +31,11 @@ public class DCMotor{
 
 //        final GpioPinAnalogOutput enablePin = gpio.provisionAnalogOutputPin(RaspiPin.GPIO_18, "PWM", speed);
         
-        GpioPinDigitalOutput motorFwd = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_02);
-        GpioPinDigitalOutput motorRev = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_03);
+        GpioPinDigitalOutput motorFwd;
+        GpioPinDigitalOutput motorRev;
         
-        GpioPinDigitalOutput motor2Fwd = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_05);
-        GpioPinDigitalOutput motor2Rev = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
+        GpioPinDigitalOutput motor2Fwd;
+        GpioPinDigitalOutput motor2Rev;
         
         private int speedLeft = 0;
         private int speedRight = 0;
@@ -59,9 +59,17 @@ public class DCMotor{
 //        
         
 
-    
-    public DCMotor(){
-        Gpio.pinMode(1, Gpio.PWM_OUTPUT);
+   
+
+    public DCMotor(GpioController _gpio, GpioPinDigitalOutput _motorFwd, GpioPinDigitalOutput _motorRev, GpioPinDigitalOutput _motor2Fwd, GpioPinDigitalOutput _motor2Rev) {
+        
+        gpio = _gpio;
+        motorFwd = _motorFwd;
+        motorRev = _motorRev;
+        motor2Fwd = _motor2Fwd;
+        motor2Rev = _motor2Rev;
+        
+        Gpio.pinMode(23, Gpio.PWM_OUTPUT);
         Gpio.pwmSetMode(Gpio.PWM_MODE_MS);
         Gpio.pwmSetClock(384);
         Gpio.pwmSetRange(1000);
@@ -83,7 +91,7 @@ public class DCMotor{
     
     public void brakingStop() throws InterruptedException{
         for(int i = speedLeft; i > 0; i--){
-            Thread.sleep(10);
+            Thread.sleep(5);
             setSpeedLeft(i);
             setSpeedRight(i);
         }
@@ -110,6 +118,30 @@ public class DCMotor{
     public void reverse(int speed){
         speed = (int)(speed * 2.55);
         motorFwd.setState(false);
+        motor2Fwd.setState(false);
+        motorRev.setState(true);
+        motor2Rev.setState(true);
+        setSpeedLeft(speed);
+        setSpeedRight(speed);
+        speedLeft = speed;
+        speedRight = speed;
+    }
+    
+    public void left(int speed){
+        speed = (int)(speed * 2.55);
+        motorFwd.setState(false);
+        motor2Fwd.setState(true);
+        motorRev.setState(true);
+        motor2Rev.setState(true);
+        setSpeedLeft(speed);
+        setSpeedRight(speed);
+        speedLeft = speed;
+        speedRight = speed;
+    }
+    
+    public void right(int speed){
+        speed = (int)(speed * 2.55);
+        motorFwd.setState(true);
         motor2Fwd.setState(false);
         motorRev.setState(true);
         motor2Rev.setState(true);
@@ -173,7 +205,7 @@ public class DCMotor{
     
     public void setSpeedRight(int speed){
        
-        Gpio.pwmWrite(24, speed);
+        Gpio.pwmWrite(26, speed);
     }
      
      
