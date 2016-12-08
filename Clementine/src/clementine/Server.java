@@ -167,24 +167,32 @@ public class Server extends JFrame{
     /* Method that takes what the user sends through key listeners and hadles 
     what the robot should do through the BotController class */
     private void mannageCommand(String message) {
-        if(message.equals("CLIENT>>> 1,0,0,0")){
-            
+        String[] splitMessage = message.split(",");
+        if(splitMessage[0].equals("true")){
             clementineBotController.turnLeft();
-            
-        }else if(message.equals("CLIENT>>> 0,1,0,0")){
+        
+        }else if(splitMessage[1].equals("ture")){
             
            clementineBotController.turnRight();
             
-        }else if(message.equals("CLIENT>>> 0,0,1,0")){
+        }else if(splitMessage[2].equals("true")){
             
             clementineBotController.moveForward();
             
-        }else if(message.equals("CLIENT>>> 0,0,0,1")){
+        }else if(splitMessage[3].equals("true")){
             
             clementineBotController.moveReverse();
             
+        }else if(splitMessage[0].equals("true")&&splitMessage[2].equals("true")){
+            clementineBotController.forwardLeft();
+        }else if(splitMessage[1].equals("true")&&splitMessage[2].equals("true")){
+            clementineBotController.forwardRight();
+        }else if(splitMessage[0].equals("true")&&splitMessage[3].equals("true")){
+            clementineBotController.reverseLeft();
+        }else if(splitMessage[1].equals("true")&&splitMessage[3].equals("true")){
+            clementineBotController.reverseRight();
         }else{
-            System.out.println("nothing is happening");
+            System.out.println("lol");
         }
     }
     

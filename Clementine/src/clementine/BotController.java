@@ -58,6 +58,22 @@ public class BotController{
         motor.reverse(100);
     }
     
+    public void forwardLeft(){
+        motor.fwdLeft(100);
+    }
+    
+    public void forwardRight(){
+        motor.fwdRight(100);
+    }
+    
+    public void reverseLeft(){
+        motor.rvsLeft(100);
+    }
+    
+    public void reverseRight(){
+        motor.rvsRight(100);
+    }
+    
     public void brakingStop() throws InterruptedException{
         motor.brakingStop();
     }

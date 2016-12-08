@@ -153,7 +153,7 @@ public class ClemClient extends JFrame implements KeyListener {
     
     private void sendData(String message){
         try {
-            output.writeObject("CLIENT>>> "+message);
+            output.writeObject(""+message);
             output.flush();
         } catch (IOException ex) {
             //Logger.getLogger(Server.class.getName()).log(Level.SEVERE, null, ex);
@@ -173,8 +173,7 @@ public class ClemClient extends JFrame implements KeyListener {
         }
     }// End method closeConnection
     
-    /*
-    Still testing this method
+    
     
     private String convertBooleanToString(boolean leftBool, boolean rightBool,
             boolean forwardBool, boolean reverseBool){
@@ -186,12 +185,16 @@ public class ClemClient extends JFrame implements KeyListener {
         holdBooleans[3] = reverseBool;
         
         for(int i=0; i<holdBooleans.length; i++){
-            stringToReturn.concat(holdBooleans[i]+",");
+            if(i==0){
+                stringToReturn = holdBooleans[i]+"";
+            }else {
+                stringToReturn = stringToReturn + "," + holdBooleans[i];
+            }
         }
-        
+    
         return stringToReturn;
     }
-*/
+
 
     @Override
     public void keyTyped(KeyEvent e) {
@@ -203,25 +206,20 @@ public class ClemClient extends JFrame implements KeyListener {
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
             
             left = true;
-            sendData("1,0,0,0");
-            //System.out.println(convertBooleanToString(left,right,forward,backwards));
             
         }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
             
             right = true;
-            sendData("0,1,0,0");
             
         }else if(e.getKeyCode() == KeyEvent.VK_UP){
             
             forward = true;
-            sendData("0,0,1,0");
             
         }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
             
             backwards = true;
-            sendData("0,0,0,1");
         }
-        //convertBooleanToString(left,right,forward,backwards);
+        sendData(convertBooleanToString(left,right,forward,backwards));
         
     }
 
@@ -236,7 +234,7 @@ public class ClemClient extends JFrame implements KeyListener {
         }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
             backwards = false;
         }
-        //convertBooleanToString(left,right,forward,backwards);
+        sendData(convertBooleanToString(left,right,forward,backwards));
         
     }
 }
