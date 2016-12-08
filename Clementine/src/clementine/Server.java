@@ -171,7 +171,7 @@ public class Server extends JFrame{
         if(splitMessage[0].equals("true")){
             clementineBotController.turnLeft();
         
-        }else if(splitMessage[1].equals("ture")){
+        }else if(splitMessage[1].equals("true")){
             
            clementineBotController.turnRight();
             

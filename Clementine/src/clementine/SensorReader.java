@@ -43,8 +43,8 @@ public class SensorReader {
 
         // stop all GPIO activity/threads by shutting down the GPIO controller 
         // (this method will forcefully shutdown all GPIO monitoring threads and scheduled tasks) 
-        gpio.shutdown(); 
-        System.out.print(""); 
+        //gpio.shutdown(); 
+        //System.out.print(""); 
     }
     
     
