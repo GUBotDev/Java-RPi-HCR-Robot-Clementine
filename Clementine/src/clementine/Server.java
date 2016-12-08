@@ -168,14 +168,10 @@ public class Server extends JFrame{
     what the robot should do through the BotController class */
     private void mannageCommand(String message) {
         String[] splitMessage = message.split(",");
-        if(splitMessage[0].equals("true")){
+        if(splitMessage[0].equals("CLIENT>>> true")){
             clementineBotController.turnLeft();
         
-        }else if(splitMessage[1].equals("true")){
-            
-           clementineBotController.turnRight();
-            
-        }else if(splitMessage[2].equals("true")){
+        }else if(splitMessage[1].equals("true"))if(splitMessage[2].equals("true")){
             
             clementineBotController.moveForward();
             
@@ -183,11 +179,11 @@ public class Server extends JFrame{
             
             clementineBotController.moveReverse();
             
-        }else if(splitMessage[0].equals("true")&&splitMessage[2].equals("true")){
+        }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[2].equals("true")){
             clementineBotController.forwardLeft();
         }else if(splitMessage[1].equals("true")&&splitMessage[2].equals("true")){
             clementineBotController.forwardRight();
-        }else if(splitMessage[0].equals("true")&&splitMessage[3].equals("true")){
+        }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[3].equals("true")){
             clementineBotController.reverseLeft();
         }else if(splitMessage[1].equals("true")&&splitMessage[3].equals("true")){
             clementineBotController.reverseRight();
