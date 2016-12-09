@@ -5,6 +5,7 @@
  */
 package clementine;
 
+import com.pi4j.io.i2c.I2CFactory;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

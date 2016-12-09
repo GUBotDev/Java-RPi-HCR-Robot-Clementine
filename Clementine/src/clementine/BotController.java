@@ -9,7 +9,11 @@ import com.pi4j.io.gpio.GpioController;
 import com.pi4j.io.gpio.GpioFactory;
 import com.pi4j.io.gpio.GpioPinDigitalOutput;
 import com.pi4j.io.gpio.RaspiPin;
+import com.pi4j.io.i2c.I2CFactory;
 import com.pi4j.wiringpi.Gpio;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 
 /**
@@ -27,10 +31,16 @@ public class BotController{
     private GpioPinDigitalOutput motor2Rev = gpio.provisionDigitalOutputPin(RaspiPin.GPIO_06);
     
     private DCMotor motor = new DCMotor(gpio, motorFwd, motorRev, motor2Fwd, motor2Rev);
+    private SensorReader[] sensorArray = new SensorReader[4];
+    
     
    /* Default consturctor for the robot contorller */
-    public BotController(){
+    public BotController() {
         
+        // 0,1,2,3 = left, center, right, back
+        //for(int i=0 ; i < 4 ; i++ ){
+            //sensorArray [i]= new SensorReader(i);
+        //}
     }
     
     /* Method to show that the clementine robot is turned on. Shows the user
@@ -41,6 +51,7 @@ public class BotController{
     /* Method to turn the robot to the left */
     public void turnLeft(){
         motor.left(200);
+        
     }
     
     /* Method to turn the robot to the right */
@@ -74,8 +85,13 @@ public class BotController{
         motor.rvsRight(200);
     }
     
-    public void brakingStop() throws InterruptedException{
-        motor.brakingStop();
+    public void brakingStop(){
+        try {
+            motor.brakingStop();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(BotController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
     
 }

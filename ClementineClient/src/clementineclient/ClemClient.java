@@ -218,6 +218,7 @@ public class ClemClient extends JFrame implements KeyListener {
         }
         sendData(convertBooleanToString(left,right,forward,backwards));
         
+        
     }
 
     @Override
