@@ -91,7 +91,7 @@ public class DCMotor{
     
     public void brakingStop() throws InterruptedException{
         for(int i = speedLeft; i > 0; i--){
-            Thread.sleep(5);
+            Thread.sleep(2);
             setSpeedLeft(i);
             setSpeedRight(i);
         }

@@ -199,25 +199,21 @@ public class ClemClient extends JFrame implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //not using
+        
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            
             left = true;
             
         }else if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            
             right = true;
             
         }else if(e.getKeyCode() == KeyEvent.VK_UP){
-            
             forward = true;
             
         }else if(e.getKeyCode() == KeyEvent.VK_DOWN){
-            
             backwards = true;
         }
         sendData(convertBooleanToString(left,right,forward,backwards));

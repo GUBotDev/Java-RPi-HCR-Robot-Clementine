@@ -40,38 +40,38 @@ public class BotController{
     
     /* Method to turn the robot to the left */
     public void turnLeft(){
-        motor.left(100);
+        motor.left(200);
     }
     
     /* Method to turn the robot to the right */
     public void turnRight(){
-        motor.right(100);
+        motor.right(200);
     }
     
     /* Method to move the robot forward */
     public void moveForward(){
-        motor.fwd(100);
+        motor.fwd(200);
     }
     
     /* Method to move the robot reverse */
     public void moveReverse(){
-        motor.reverse(100);
+        motor.reverse(200);
     }
     
     public void forwardLeft(){
-        motor.fwdLeft(100);
+        motor.fwdLeft(200);
     }
     
     public void forwardRight(){
-        motor.fwdRight(100);
+        motor.fwdRight(200);
     }
     
     public void reverseLeft(){
-        motor.rvsLeft(100);
+        motor.rvsLeft(200);
     }
     
     public void reverseRight(){
-        motor.rvsRight(100);
+        motor.rvsRight(200);
     }
     
     public void brakingStop() throws InterruptedException{

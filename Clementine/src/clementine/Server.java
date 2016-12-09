@@ -63,7 +63,7 @@ public class Server extends JFrame{
         
     }
     
-    public void runServer(){
+    public void runServer() throws InterruptedException{
         try {
             serverSock = new ServerSocket(12345, 100);
             while(true){
@@ -101,7 +101,7 @@ public class Server extends JFrame{
         
     }
     
-    private void processConnection() throws IOException{
+    private void processConnection() throws IOException, InterruptedException{
         String message = "Connection succesful";
         sendData(message);
         
@@ -166,29 +166,34 @@ public class Server extends JFrame{
     
     /* Method that takes what the user sends through key listeners and hadles 
     what the robot should do through the BotController class */
-    private void mannageCommand(String message) {
-        String[] splitMessage = message.split(",");
-        if(splitMessage[0].equals("CLIENT>>> true")){
-            clementineBotController.turnLeft();
+    private void mannageCommand(String message) throws InterruptedException {
+        if(message.contains(",")){
+            String[] splitMessage = message.split(",");
+            if(splitMessage[0].equals("CLIENT>>> true")){
+                clementineBotController.turnLeft();
         
-        }else if(splitMessage[1].equals("true"))if(splitMessage[2].equals("true")){
+            }else if(splitMessage[1].equals("true")){
+                clementineBotController.turnRight();
+            }else if(splitMessage[2].equals("true")){
             
-            clementineBotController.moveForward();
+                clementineBotController.moveForward();
             
-        }else if(splitMessage[3].equals("true")){
+            }else if(splitMessage[3].equals("true")){
             
-            clementineBotController.moveReverse();
+                clementineBotController.moveReverse();
             
-        }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[2].equals("true")){
-            clementineBotController.forwardLeft();
-        }else if(splitMessage[1].equals("true")&&splitMessage[2].equals("true")){
-            clementineBotController.forwardRight();
-        }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[3].equals("true")){
-            clementineBotController.reverseLeft();
-        }else if(splitMessage[1].equals("true")&&splitMessage[3].equals("true")){
-            clementineBotController.reverseRight();
-        }else{
-            System.out.println("lol");
+            }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[2].equals("true")){
+                clementineBotController.forwardLeft();
+            }else if(splitMessage[1].equals("true")&&splitMessage[2].equals("true")){
+                clementineBotController.forwardRight();
+            }else if(splitMessage[0].equals("CLIENT>>> true")&&splitMessage[3].equals("true")){
+                clementineBotController.reverseLeft();
+            }else if(splitMessage[1].equals("true")&&splitMessage[3].equals("true")){
+                clementineBotController.reverseRight();
+            }else{
+                clementineBotController.brakingStop();
+                System.out.println("lol");
+            }
         }
     }
     
